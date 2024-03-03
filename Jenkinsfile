@@ -17,9 +17,7 @@ pipeline {
                 }
             }
         }
-    }
-
-    stages {
+        
         stage('Clone Repository') {
             steps {
                 git branch: 'main', credentialsId: 'github', url: GIT_REPO_URL
