@@ -12,7 +12,8 @@ pipeline {
             steps {
                 script {
                     // Execute AWS CLI command to list S3 buckets
-                    def result = sh(returnStdout: true, script: 'aws s3 ls')
+                    def awsCliPath = '/usr/local/bin/aws'
+                    def result = sh(returnStdout: true, script: "${awsCliPath} s3 ls")
                     println "AWS CLI Output:\n$result"
                 }
             }
@@ -32,7 +33,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh "aws lambda update-function-code --function-name ${LAMBDA_FUNCTION_NAME} --zip-file fileb://${WORKSPACE}/${PYTHON_FILE_PATH}"
+                    sh "/usr/local/bin/aws lambda update-function-code --function-name ${LAMBDA_FUNCTION_NAME} --zip-file fileb://${WORKSPACE}/${PYTHON_FILE_PATH}"
                 }
             }
         }
