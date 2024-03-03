@@ -22,7 +22,11 @@ pipeline {
             }
             steps {
                 script {
-                    sh "/usr/local/bin/aws lambda update-function-code --function-name ${LAMBDA_FUNCTION_NAME} --zip-file fileb://${WORKSPACE}"
+                    // Create a zip file containing the Python file
+                    sh "zip -r lambda_function.zip lambda_function.py"
+                    
+                    // Run AWS CLI command to update Lambda function code
+                    sh "/usr/local/bin/aws lambda update-function-code --function-name ${LAMBDA_FUNCTION_NAME} --zip-file fileb://lambda_function.zip"
                 }
             }
         }
