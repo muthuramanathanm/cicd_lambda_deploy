@@ -8,17 +8,6 @@ pipeline {
     }
 
     stages {
-        stage('Check AWS CLI') {
-            steps {
-                script {
-                    // Execute AWS CLI command to list S3 buckets
-                    def awsCliPath = '/usr/local/bin/aws'
-                    def result = sh(returnStdout: true, script: "${awsCliPath} s3 ls")
-                    println "AWS CLI Output:\n$result"
-                }
-            }
-        }
-        
         stage('Clone Repository') {
             steps {
                 git branch: 'main', credentialsId: 'github', url: GIT_REPO_URL
