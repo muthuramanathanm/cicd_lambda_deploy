@@ -22,7 +22,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh "/usr/local/bin/aws lambda update-function-code --function-name ${LAMBDA_FUNCTION_NAME} --zip-file fileb://${WORKSPACE}/${PYTHON_FILE_PATH}"
+                    sh "/usr/local/bin/aws lambda update-function-code --function-name ${LAMBDA_FUNCTION_NAME} --zip-file fileb://${WORKSPACE}"
                 }
             }
         }
